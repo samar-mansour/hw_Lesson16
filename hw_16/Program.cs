@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,20 +16,42 @@ namespace hw16_0507
             }  
         }
 
-        static string [] GetRacingHorse(Horse[] horses)
+        static Horse [] GetRacingHorse(Horse[] horses)
         {
-            int num = horses.Length;
-            string [] racing = new string[num];
+            Horse[] racing = TotalRacingHorse(horses);
+
+            CreateNewRacingHorses(horses, racing);
+
+            return racing;
+        }
+
+        static Horse[] TotalRacingHorse(Horse[] horses)
+        {
+            int num = 0;
+
             for (int i = 0; i < horses.Length; i++)
             {
                 if (horses[i].racingHorse)
                 {
-                    racing[i] = horses[i].name;
+                    num++;
                 }
             }
+            Horse[] racing = new Horse[num];
             return racing;
         }
-        
+
+        static void CreateNewRacingHorses(Horse[] horses, Horse[] racingHorses)
+        {
+            int index = 0;
+            for (int i = 0; i < horses.Length; i++)
+            {
+                if (horses[i].racingHorse)
+                {
+                    racingHorses[index] = horses[i];
+                    index++;
+                }
+            }
+        }
 
         static void Main(string[] args)
         {
@@ -42,15 +64,26 @@ namespace hw16_0507
             Wolf blackWolf = new Wolf("Zen", "Ham", "Spirit");
             PetWolf pet = new PetWolf("Gray","Milk","Spirit");
 
+            Console.WriteLine("=============Animal Sing===================");
             Animal[] a = new Animal[] { boney, husky, beardog, blackWolf, pet };
             AnimalSing(a);
 
-
-            Horse[] h = new Horse[]{ boney, dark,arabian};
-            for (int i = 0; i <h.Length; i++)
+            Console.WriteLine("=============Animals====================");
+            for (int i = 0; i < a.Length; i++)
             {
-                Console.WriteLine(GetRacingHorse(h)[i]);
+                Console.WriteLine(a[i]);
             }
+
+            Console.WriteLine("=============Racing Horses==================");
+            Horse[] h = new Horse[]{ boney, dark,arabian};
+            Horse[] racing = GetRacingHorse(h);
+            Console.WriteLine($"Number Of Racing Horses: {racing.Length}");
+            for (int i = 0; i < racing.Length; i++)
+            {
+                Console.WriteLine(racing[i]);
+            }
+            
+
 
         }
     }
