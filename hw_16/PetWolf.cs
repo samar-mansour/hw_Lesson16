@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hw16_0507
 {
-    class PetWolf:Wolf
+    sealed class PetWolf:Wolf
     {
         public PetWolf(string name, string favoriteDogFood, string nameOfPack) : base(name, favoriteDogFood,nameOfPack)
         {
