@@ -16,7 +16,7 @@ namespace hw16_0507
             }  
         }
 
-        static void GetRacingHorse(Horse[] horses)
+        static string [] GetRacingHorse(Horse[] horses)
         {
             int num = horses.Length;
             string [] racing = new string[num];
@@ -25,10 +25,11 @@ namespace hw16_0507
                 if (horses[i].racingHorse)
                 {
                     racing[i] = horses[i].name;
-                    Console.WriteLine(racing[i]);
                 }
             }
+            return racing;
         }
+        
 
         static void Main(string[] args)
         {
@@ -46,7 +47,10 @@ namespace hw16_0507
 
 
             Horse[] h = new Horse[]{ boney, dark,arabian};
-            GetRacingHorse(h);
+            for (int i = 0; i <h.Length; i++)
+            {
+                Console.WriteLine(GetRacingHorse(h)[i]);
+            }
 
         }
     }
